@@ -359,6 +359,13 @@ class ezcDocumentRst extends ezcDocument implements ezcDocumentXhtmlConversion, 
             $visitor->visit( $this->ast, $this->path )
         );
 
+        // Merge errors from converter
+        $this->errors = array_merge(
+            $this->errors,
+            $parser->getErrors(),
+            $visitor->getErrors()
+        );
+
         return $document;
     }
 
