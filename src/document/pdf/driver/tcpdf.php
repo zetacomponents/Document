@@ -322,6 +322,11 @@ class ezcDocumentPdfTcpdfDriver extends ezcDocumentPdfDriver
      */
     public function setTextFormatting( $type, $value )
     {
+        if ( $this->document === null )
+        {
+            $this->initialize();
+        }
+        
         switch ( $type )
         {
             case 'font-style':
