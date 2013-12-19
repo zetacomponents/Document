@@ -67,6 +67,8 @@ class ezcDocumentWikiMediawikiTokenizerTests extends ezcTestCase
      */
     public function testTokenizeWikiMediawikiFile( $from, $to )
     {
+        $this->markTestIncomplete("This is work in progress – implementation and tests are not complete.");
+
         if ( !is_file( $to ) )
         {
             $this->markTestSkipped( "Comparision file '$to' not yet defined." );
