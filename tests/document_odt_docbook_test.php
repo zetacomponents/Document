@@ -37,9 +37,24 @@ class ezcDocumentOdtDocbookTests extends ezcTestCase
 {
     public static $testDocuments;
 
+    protected $cwd;
+
     public static function suite()
     {
         return new PHPUnit_Framework_TestSuite( __CLASS__ );
+    }
+
+    public function setUp()
+    {
+        // The pathes in the processed files are relativ to one directory level
+        // above, so we just change the curretn working dir.
+        $this->cwd = getcwd();
+        chdir( dirname( $this->cwd ) );
+    }
+
+    public function tearDown()
+    {
+        chdir( $this->cwd );
     }
 
     public static function getTestDocuments()
