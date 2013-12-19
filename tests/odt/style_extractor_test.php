@@ -107,7 +107,7 @@ class ezcDocumentOdtStyleExtractorTest extends ezcTestCase
         );
         $this->assertEquals(
             'paragraph',
-            $style->hasAttributeNs(
+            $style->getAttributeNs(
                 ezcDocumentOdt::NS_ODT_STYLE,
                 'family'
             )
