@@ -30,6 +30,6 @@
             "zetacomponents/base": "*"
         },
         "require-dev": {
-            "zetacomponents/unit-test": "*"
+            "zetacomponents/unit-test": "dev-master"
         }
 }
