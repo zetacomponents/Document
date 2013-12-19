@@ -134,7 +134,7 @@ abstract class ezcDocumentXmlBase extends ezcDocument implements ezcDocumentVali
      */
     public function save()
     {
-        return $this->document->saveXml();
+        return $this->document->saveXml( $this->document, LIBXML_NOEMPTYTAG );
     }
 }
 
