@@ -467,6 +467,7 @@ class ezcDocumentRstXhtmlVisitor extends ezcDocumentRstVisitor
                 null, $node->token->line, $node->token->position
             );
         }
+        $roleHandler->setSourceVisitor($this);
         $roleHandler->toXhtml( $this->document, $root );
     }
 
