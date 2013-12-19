@@ -77,6 +77,9 @@ class ezcDocumentConverterDocbookToHtmlXsltTests extends ezcTestCase
         { /* Expected */ }
     }
 
+    /**
+     * @group slow
+     */
     public function testConversionFailure()
     {
         if ( !ezcBaseFeatures::hasExtensionSupport( 'xsl' ) )
@@ -106,6 +109,7 @@ class ezcDocumentConverterDocbookToHtmlXsltTests extends ezcTestCase
 
     /**
      * @dataProvider getTestDocuments
+     * @group slow
      */
     public function testLoadXmlDocumentFromFile( $from, $to )
     {
