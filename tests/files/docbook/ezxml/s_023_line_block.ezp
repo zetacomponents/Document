@@ -8,7 +8,7 @@
       <line>But&#xA0;I'm&#xA0;expecting&#xA0;a&#xA0;postal&#xA0;order&#xA0;and&#xA0;I&#xA0;can&#xA0;pay&#xA0;you&#xA0;back</line>
       <line>as&#xA0;soon&#xA0;as&#xA0;it&#xA0;comes.</line>
       <line>Love,&#xA0;Ewan.</line>
-      <line></line>
+      <line/>
     </paragraph>
     <paragraph>Another one:</paragraph>
     <paragraph>
@@ -19,12 +19,12 @@
       <line>to&#xA0;wrap&#xA0;should&#xA0;begin&#xA0;with&#xA0;a&#xA0;space&#xA0;in&#xA0;place&#xA0;of&#xA0;the&#xA0;vertical&#xA0;bar.</line>
       <line>&#xA0;&#xA0;&#xA0;&#xA0;The&#xA0;left&#xA0;edge&#xA0;of&#xA0;a&#xA0;continuation&#xA0;line&#xA0;need&#xA0;not&#xA0;be&#xA0;aligned&#xA0;with</line>
       <line>the&#xA0;left&#xA0;edge&#xA0;of&#xA0;the&#xA0;text&#xA0;above&#xA0;it.</line>
-      <line></line>
+      <line/>
     </paragraph>
     <paragraph>
       <line>This&#xA0;is&#xA0;a&#xA0;second&#xA0;line&#xA0;block.</line>
       <line>Blank&#xA0;lines&#xA0;are&#xA0;permitted&#xA0;internally,&#xA0;but&#xA0;they&#xA0;must&#xA0;begin&#xA0;with&#xA0;a&#xA0;"|".</line>
-      <line></line>
+      <line/>
     </paragraph>
     <paragraph>Take it away, Eric the Orchestra Leader!</paragraph>
     <paragraph>
@@ -39,7 +39,7 @@
       <line>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;when&#xA0;half&#xA0;the&#xA0;bee&#xA0;is&#xA0;not&#xA0;a&#xA0;bee,</line>
       <line>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;due&#xA0;to&#xA0;some&#xA0;ancient&#xA0;injury?</line>
       <line>Singing...</line>
-      <line></line>
+      <line/>
     </paragraph>
     <paragraph>The end.</paragraph>
   </section>
