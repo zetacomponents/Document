@@ -26,10 +26,10 @@
     "license": "Apache-2.0",
     "name": "zetacomponents/document",
     "type": "library",
-        "require": {
-            "zetacomponents/base": "*"
-        },
-        "require-dev": {
-            "zetacomponents/unit-test": "dev-master"
-        }
+    "require": {
+        "zetacomponents/base": "~1.8"
+    },
+    "require-dev": {
+        "zetacomponents/unit-test": "*"
+    }
 }
