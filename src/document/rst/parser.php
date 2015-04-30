@@ -3057,7 +3057,7 @@ class ezcDocumentRstParser extends ezcDocumentParser
                 /* DEBUG
                 echo "Split, ";
                 // /DEBUG */
-                $newToken = clone( $token );
+                $newToken = clone $token;
                 $token->content = substr( $token->content, 0, $split );
 
                 $newToken->content = substr( $newToken->content, $split + 1 );
