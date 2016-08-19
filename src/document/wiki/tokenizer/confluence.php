@@ -345,9 +345,6 @@ class ezcDocumentWikiConfluenceTokenizer extends ezcDocumentWikiTokenizer
                     $lastImageSeparator  = null;
                     break;
 
-                case $token instanceof ezcDocumentWikiPluginToken:
-                    $this->parsePluginContents( $token );
-                    break;
             }
         }
 
