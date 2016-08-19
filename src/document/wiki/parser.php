@@ -69,8 +69,6 @@ class ezcDocumentWikiParser extends ezcDocumentParser
             => 'shiftTitleToken',
         'ezcDocumentWikiNewLineToken'
             => 'shiftNewLineToken',
-        'ezcDocumentWikiEscapeCharacterToken'
-            => 'shiftEscapeToken',
         'ezcDocumentWikiToken'
             => 'shiftWithTokenConversion',
     );
