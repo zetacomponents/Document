@@ -145,7 +145,7 @@ class ezcDocumentPcssParserTests extends ezcTestCase
         {
             $this->assertSame(
                 $message,
-                preg_replace( '(in file \'[^\']+\')', 'in file \'$file\'', $e->getMessage() ),
+                preg_replace( '/(in file \'[^\']+\')/', 'in file \'$file\'', $e->getMessage() ),
                 'Different parse error expected.'
             );
         }
