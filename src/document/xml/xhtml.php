@@ -219,7 +219,7 @@ class ezcDocumentXhtml extends ezcDocumentXmlBase implements ezcDocumentValidati
                          ( !$significantWhitespace ) &&
                          ( $xhtml->getProperty( 'whitespace' ) !== 'significant' ) )
                     {
-                        continue;
+                        continue 2;
                     }
 
                     if ( ( $xhtml->getProperty( 'whitespace' ) === 'significant' ) ||
