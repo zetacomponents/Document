@@ -1,23 +1,28 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
     ],
-    "hash": "0e00667ce69731ebd199f67d14c600a3",
+    "content-hash": "15a2a33daac31762e76f487e9549f742",
     "packages": [
         {
             "name": "zetacomponents/base",
-            "version": "1.8",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zetacomponents/Base.git",
-                "reference": "52ca69c1de55f3fa4f595779e5bc831da7ee176c"
+                "reference": "489e20235989ddc97fdd793af31ac803972454f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zetacomponents/Base/zipball/52ca69c1de55f3fa4f595779e5bc831da7ee176c",
-                "reference": "52ca69c1de55f3fa4f595779e5bc831da7ee176c",
+                "url": "https://api.github.com/repos/zetacomponents/Base/zipball/489e20235989ddc97fdd793af31ac803972454f1",
+                "reference": "489e20235989ddc97fdd793af31ac803972454f1",
                 "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.7",
+                "zetacomponents/unit-test": "*"
             },
             "type": "library",
             "autoload": {
@@ -27,7 +32,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "apache2"
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -63,22 +68,22 @@
             ],
             "description": "The Base package provides the basic infrastructure that all packages rely on. Therefore every component relies on this package.",
             "homepage": "https://github.com/zetacomponents",
-            "time": "2009-12-21 12:14:16"
+            "time": "2017-11-28T11:30:00+00:00"
         }
     ],
     "packages-dev": [
         {
             "name": "zetacomponents/unit-test",
-            "version": "dev-master",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zetacomponents/UnitTest.git",
-                "reference": "772d6e651cb90c6de10f975b2e323df98d1e4a2c"
+                "reference": "075742e2ad692c58da4dc593518a4d110f7eb822"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zetacomponents/UnitTest/zipball/772d6e651cb90c6de10f975b2e323df98d1e4a2c",
-                "reference": "772d6e651cb90c6de10f975b2e323df98d1e4a2c",
+                "url": "https://api.github.com/repos/zetacomponents/UnitTest/zipball/075742e2ad692c58da4dc593518a4d110f7eb822",
+                "reference": "075742e2ad692c58da4dc593518a4d110f7eb822",
                 "shasum": ""
             },
             "type": "library",
@@ -125,20 +130,14 @@
             ],
             "description": "zetacomponents/unit-test Component",
             "homepage": "https://github.com/zetacomponents",
-            "time": "2012-05-21 09:51:20"
+            "time": "2014-10-10T11:08:33+00:00"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "zetacomponents/unit-test": 20
-    },
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
 }
