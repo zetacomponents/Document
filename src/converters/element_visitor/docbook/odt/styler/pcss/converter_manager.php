@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -28,8 +28,8 @@
 /**
  * Manager for ezcDocumentOdtPcssConverter instances.
  *
- * An instance of this class is used to handle style converters. It uses the 
- * {@link ArrayAccess} interface to access style converters by the name of 
+ * An instance of this class is used to handle style converters. It uses the
+ * {@link ArrayAccess} interface to access style converters by the name of
  * the CSS style attribute they handle.
  *
  * @package Document
@@ -70,12 +70,13 @@ class ezcDocumentOdtPcssConverterManager extends ArrayObject
     /**
      * Sets a new style converter.
      *
-     * The key must be the CSS style property this converter handles, the 
+     * The key must be the CSS style property this converter handles, the
      * $value must be the style converter itself.
-     * 
-     * @param string $key 
-     * @param ezcDocumentOdtPcssConverter $value 
+     *
+     * @param string $key
+     * @param ezcDocumentOdtPcssConverter $value
      */
+	#[\ReturnTypeWillChange]
     public function offsetSet( $key, $value )
     {
         if ( !is_string( $key ) )
@@ -96,12 +97,13 @@ class ezcDocumentOdtPcssConverterManager extends ArrayObject
     /**
      * Appending elements is not allowed.
      *
-     * Appending a style is not allowed. Please use the array access with the 
+     * Appending a style is not allowed. Please use the array access with the
      * style name to set a new style converter.
-     * 
-     * @param mixed $value 
+     *
+     * @param mixed $value
      * @throws RuntimeException
      */
+	#[\ReturnTypeWillChange]
     public function append( $value )
     {
         throw new RuntimeException( 'Appending values is not allowed.' );

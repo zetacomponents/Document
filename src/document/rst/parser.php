@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -495,10 +495,10 @@ class ezcDocumentRstParser extends ezcDocumentParser
     /**
      * Re-align tokens
      *
-     * Realign tokens, so that the line start positions start at 0 again, even 
+     * Realign tokens, so that the line start positions start at 0 again, even
      * they were indeted before.
-     * 
-     * @param array $tokens 
+     *
+     * @param array $tokens
      * @return array
      */
     protected function realignTokens( $tokens )
@@ -1657,8 +1657,8 @@ class ezcDocumentRstParser extends ezcDocumentParser
      *
      * Returns true, if the tokens may be an enumerated list, and false otherwise.
      *
-     * @param ezcDocumentRstStack $tokens 
-     * @param mixed $token 
+     * @param ezcDocumentRstStack $tokens
+     * @param mixed $token
      * @return void
      */
     protected function isEnumeratedList( ezcDocumentRstStack $tokens, $token = null )
@@ -4055,7 +4055,7 @@ class ezcDocumentRstParser extends ezcDocumentParser
     protected function reduceBlockquoteAnnotation( ezcDocumentRstNode $node )
     {
         // Do not reduce before it is filled with content
-        if ( count( $node->nodes ) < 1 )
+        if ( ! is_array( $node->nodes ) || count( $node->nodes ) < 1 )
         {
             return $node;
         }

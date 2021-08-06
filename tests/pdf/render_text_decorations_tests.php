@@ -1,7 +1,7 @@
 <?php
 /**
  * ezcDocumentPdfDriverTcpdfTests
- * 
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -36,7 +36,7 @@ if ( file_exists( $path = dirname( __FILE__ ) . '/../external/tcpdf-4.8/tcpdf.ph
 
 /**
  * Test suite for class.
- * 
+ *
  * @package Document
  * @subpackage Tests
  */
@@ -49,7 +49,7 @@ class ezcDocumentPdfRendererTextDecorationsTests extends ezcDocumentPdfTestCase
 
     /**
      * Old error reporting level restored after the test
-     * 
+     *
      * @var int
      */
     protected $oldErrorReporting = -1;
@@ -59,7 +59,7 @@ class ezcDocumentPdfRendererTextDecorationsTests extends ezcDocumentPdfTestCase
         return new \PHPUnit\Framework\TestSuite( __CLASS__ );
     }
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -92,7 +92,7 @@ class ezcDocumentPdfRendererTextDecorationsTests extends ezcDocumentPdfTestCase
         $this->page->y = 0;
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         error_reporting( $this->oldErrorReporting );
         parent::tearDown();
@@ -100,7 +100,7 @@ class ezcDocumentPdfRendererTextDecorationsTests extends ezcDocumentPdfTestCase
 
     /**
      * Return an array of drivers to test with.
-     * 
+     *
      * @return void
      */
     public static function getDrivers()

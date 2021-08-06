@@ -1,7 +1,7 @@
 <?php
 /**
  * ezcDocumentPdfStyleInferenceTests
- * 
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -27,7 +27,7 @@
 
 /**
  * Test suite for class.
- * 
+ *
  * @package Document
  * @subpackage Tests
  */
@@ -125,10 +125,10 @@ class ezcDocumentPcssValueParserTests extends ezcTestCase
         $value = new ezcDocumentPcssStyleMeasureBoxValue();
         $value->parse( $input );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $expectation,
             $value->value,
-            'Invalid box measures read.', .1
+            .1
         );
 
         $this->assertEquals(
@@ -312,10 +312,10 @@ class ezcDocumentPcssValueParserTests extends ezcTestCase
         $value = new ezcDocumentPcssStyleColorValue();
         $value->parse( $input );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $expectation,
             $value->value,
-            'Invalid color values read.', .01
+            .01
         );
 
         $this->assertEquals(
@@ -364,10 +364,10 @@ class ezcDocumentPcssValueParserTests extends ezcTestCase
         $value = new ezcDocumentPcssStyleLineValue();
         $value->parse( $input );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $expectation,
             $value->value,
-            'Invalid style style value read.', .01
+            .01
         );
 
         $this->assertEquals(
@@ -461,10 +461,10 @@ class ezcDocumentPcssValueParserTests extends ezcTestCase
         $value = new ezcDocumentPcssStyleBorderValue();
         $value->parse( $input );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $expectation,
             $value->value,
-            'Invalid border style value read.', .01
+            .01
         );
 
         $this->assertEquals(
@@ -548,10 +548,10 @@ class ezcDocumentPcssValueParserTests extends ezcTestCase
         $value = new ezcDocumentPcssStyleColorBoxValue();
         $value->parse( $input );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $expectation,
             $value->value,
-            'Invalid color value read.', .01
+            .01
         );
 
         $this->assertEquals(
@@ -595,10 +595,10 @@ class ezcDocumentPcssValueParserTests extends ezcTestCase
         $value = new ezcDocumentPcssStyleLineBoxValue();
         $value->parse( $input );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $expectation,
             $value->value,
-            'Invalid style value read.', .01
+            .01
         );
 
         $this->assertEquals(
@@ -714,10 +714,10 @@ class ezcDocumentPcssValueParserTests extends ezcTestCase
         $value = new ezcDocumentPcssStyleBorderBoxValue();
         $value->parse( $input );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $expectation,
             $value->value,
-            'Invalid border style value read.', .01
+            .01
         );
 
         $this->assertEquals(
@@ -757,10 +757,10 @@ class ezcDocumentPcssValueParserTests extends ezcTestCase
         $value = new ezcDocumentPcssStyleSrcValue();
         $value->parse( $input );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $expectation,
             $value->value,
-            'Invalid src style value read.', .01
+            .01
         );
 
         $this->assertEquals(

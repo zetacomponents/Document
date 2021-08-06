@@ -1,7 +1,7 @@
 <?php
 /**
  * ezcDocumentRstParserTests
- * 
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,7 +29,7 @@ require_once 'helper/rst_dummy_directives.php';
 
 /**
  * Test suite for class.
- * 
+ *
  * @package Document
  * @subpackage Tests
  */
@@ -44,7 +44,7 @@ class ezcDocumentOdtDocbookTests extends ezcTestCase
         return new \PHPUnit\Framework\TestSuite( __CLASS__ );
     }
 
-    public function setUp()
+    public function setUp() : void
     {
         // The pathes in the processed files are relativ to one directory level
         // above, so we just change the curretn working dir.
@@ -52,7 +52,7 @@ class ezcDocumentOdtDocbookTests extends ezcTestCase
         chdir( dirname( $this->cwd ) );
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         chdir( $this->cwd );
     }
@@ -136,10 +136,7 @@ class ezcDocumentOdtDocbookTests extends ezcTestCase
             dirname( __FILE__ ) . '/files/odt/invalid/s_000_simple.fodt'
         );
 
-        $this->assertInternalType(
-            'array',
-            $actRes
-        );
+        $this->assertisArray( $actRes );
         $this->assertEquals(
             1,
             count( $actRes )
@@ -158,7 +155,7 @@ class ezcDocumentOdtDocbookTests extends ezcTestCase
 
         $document = new ezcDocumentOdt();
         $document->createFromDocbook( $docbook );
-        
+
         $this->assertNotNull(
             $document->getDomDocument()
         );
@@ -215,11 +212,11 @@ class ezcDocumentOdtDocbookTests extends ezcTestCase
 
 
     /**
-     * Verify extracted images from an FODT and replace their links for 
+     * Verify extracted images from an FODT and replace their links for
      * comparison.
-     * 
+     *
      * @param string $testDir Name of the current test sub-dir
-     * @param string $xml 
+     * @param string $xml
      * @return string XML with image refs replaced
      */
     protected function verifyAndReplaceImages( $testDir, $xml )
@@ -248,7 +245,7 @@ class ezcDocumentOdtDocbookTests extends ezcTestCase
                 $imageFile,
                 "Extracted image $i did not match ref file '$refFile'."
             );
-            
+
             $image->setAttribute( 'fileref', $refFile );
 
             ++$i;

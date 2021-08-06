@@ -5,3 +5,4 @@
 /.pear
 /build
 /composer.phar
+.phpunit.result.cache

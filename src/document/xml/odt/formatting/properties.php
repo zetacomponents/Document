@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -27,11 +27,11 @@
 /**
  * Class for representing formatting properties of a certain type.
  *
- * An instance of this class represents formatting properties of a certain type 
- * (indicated by a PROPERTIES_* constant). The formatting properties set inside 
+ * An instance of this class represents formatting properties of a certain type
+ * (indicated by a PROPERTIES_* constant). The formatting properties set inside
  * such an object must obay to the ODF specification.
  *
- * @property-read string $type The type of the formatting properties. Set in 
+ * @property-read string $type The type of the formatting properties. Set in
  *                the constructor
  *
  * @package Document
@@ -41,25 +41,25 @@
 class ezcDocumentOdtFormattingProperties extends ArrayObject
 {
     /**
-     * May be contained only in <style:page-layout>. 
+     * May be contained only in <style:page-layout>.
      */
     const PROPERTIES_PAGE_LAYOUT = 'page-layout-properties';
 
     /**
-     * May be contained in <style:header-style> and <style:footer-style>, which 
+     * May be contained in <style:header-style> and <style:footer-style>, which
      * are sub-elements of <style:page-layout>.
      */
     const PROPERTIES_HEADER_FOOTER = 'header-footer-properties';
 
     /**
-     * May be contained in <style:style> for families "text", "paragraph" and 
-     * "cell", but might also occur in arbitrary style families (specs not 
+     * May be contained in <style:style> for families "text", "paragraph" and
+     * "cell", but might also occur in arbitrary style families (specs not
      * clear).
      */
     const PROPERTIES_TEXT = 'text-properties';
 
     /**
-     * May be contained in <style:style> for families "paragraph" and "cell", 
+     * May be contained in <style:style> for families "paragraph" and "cell",
      * but might also occur in arbitrary style families (specs not clear).
      */
     const PROPERTIES_PARAGRAPH = 'paragraph-properties';
@@ -95,7 +95,7 @@ class ezcDocumentOdtFormattingProperties extends ArrayObject
     const PROPERTIES_TABLE_CELL = 'table-cell-properties';
 
     /**
-     * May be contained in <text:list-style> and others inside 
+     * May be contained in <text:list-style> and others inside
      * <text:list-level-style-*> elements, no matter which kind.
      */
     const PROPERTIES_LIST_LEVEL = 'list-level-properties';
@@ -103,9 +103,9 @@ class ezcDocumentOdtFormattingProperties extends ArrayObject
     /**
      * May be contained in <style:style> for the families "graphic" and "presentation".
      *
-     * Note: Most graphic properties are only used to define inline graphics, 
-     * created directly in the office document (e.g. presentations) and 
-     * therefore not supported. Supported are, e.g., graphic properties that 
+     * Note: Most graphic properties are only used to define inline graphics,
+     * created directly in the office document (e.g. presentations) and
+     * therefore not supported. Supported are, e.g., graphic properties that
      * apply to a frame.
      */
     const PROPERTIES_GRAPHIC = 'graphic-properties';
@@ -128,8 +128,8 @@ class ezcDocumentOdtFormattingProperties extends ArrayObject
      * Creates a new property object of $type.
      *
      * $type must be one of the FAMILY_* constants.
-     * 
-     * @param const $type 
+     *
+     * @param const $type
      */
     public function __construct( $type )
     {
@@ -141,10 +141,11 @@ class ezcDocumentOdtFormattingProperties extends ArrayObject
      * Appending a new value is not allowed.
      *
      * Only {@link offsetSet()} is allowed, using a valid property type.
-     * 
-     * @param mixed $value 
+     *
+     * @param mixed $value
      * @return void
      */
+	#[\ReturnTypeWillChange]
     public function append( $value )
     {
         throw new RuntimeException(
@@ -154,10 +155,11 @@ class ezcDocumentOdtFormattingProperties extends ArrayObject
 
     /**
      * Exchanging the array is not allowed.
-     * 
-     * @param array $array 
+     *
+     * @param array $array
      * @return void
      */
+	#[\ReturnTypeWillChange]
     public function exchangeArray( $array )
     {
         throw new RuntimeException( 'Exchanging of array not allowed.' );
@@ -166,13 +168,14 @@ class ezcDocumentOdtFormattingProperties extends ArrayObject
     /**
      * Sets a formatting property.
      *
-     * The $offset is the name of the formatting property, the $value the 
+     * The $offset is the name of the formatting property, the $value the
      * value to be assigned (usually string, but might be of different type).
-     * 
-     * @param string $offset 
-     * @param mixed $value 
+     *
+     * @param string $offset
+     * @param mixed $value
      * @return void
      */
+	#[\ReturnTypeWillChange]
     public function offsetSet( $offset, $value )
     {
         if ( !is_string( $offset ) )
@@ -225,7 +228,7 @@ class ezcDocumentOdtFormattingProperties extends ArrayObject
     /**
      * Returns true if the property $name is set, otherwise false.
      *
-     * @param string $name     
+     * @param string $name
      * @return bool
      * @ignore
      */
