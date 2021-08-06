@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -34,7 +34,7 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
 {
     /**
      * Data container for the document stack implementation
-     * 
+     *
      * @var array
      */
     protected $data = array();
@@ -42,18 +42,18 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
     /**
      * Number of elements on the stack
      *
-     * We are caching this value for faster access performance, and because we 
-     * are only using a very limited internal methods which actually modify the 
+     * We are caching this value for faster access performance, and because we
+     * are only using a very limited internal methods which actually modify the
      * satck.
-     * 
+     *
      * @var int
      */
     protected $count = 0;
 
     /**
      * Construct stack from array
-     * 
-     * @param array $array 
+     *
+     * @param array $array
      * @return void
      */
     public function __construct( array $array = array() )
@@ -64,8 +64,8 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
 
     /**
      * Prepend element to the document stack
-     * 
-     * @param mixed $element 
+     *
+     * @param mixed $element
      * @return void
      */
     public function unshift( $element )
@@ -76,8 +76,8 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
 
     /**
      * Prepend element to the document stack
-     * 
-     * @param mixed $element 
+     *
+     * @param mixed $element
      * @return void
      */
     public function push( $element )
@@ -88,7 +88,7 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
 
     /**
      * Get element from the beginning of the stack
-     * 
+     *
      * @return mixed
      */
     public function shift()
@@ -103,11 +103,11 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
     /**
      * Prepend another array to the stack
      *
-     * Prepends an array with tokens to the current stack. Equivalent to 
-     * calling $array = array_merge( $data, $array ); with common array 
+     * Prepends an array with tokens to the current stack. Equivalent to
+     * calling $array = array_merge( $data, $array ); with common array
      * functions.
-     * 
-     * @param array $data 
+     *
+     * @param array $data
      * @return void
      */
     public function prepend( array $data )
@@ -121,7 +121,7 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
 
     /**
      * Get stack contents as plain PHP array
-     * 
+     *
      * @return array
      */
     public function asArray( $limit = null )
@@ -135,27 +135,29 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
      *
      * This method is part of the ArrayAccess interface to allow access to the
      * data of this object as if it was an array.
-     * 
+     *
      * @param string $key
      * @return bool
      */
+	#[\ReturnTypeWillChange]
     public function offsetExists( $key )
     {
         return isset( $this->data[$key] );
     }
 
     /**
-     * Returns the element with the given offset. 
+     * Returns the element with the given offset.
      *
      * This method is part of the ArrayAccess interface to allow access to the
-     * data of this object as if it was an array. 
-     * 
+     * data of this object as if it was an array.
+     *
      * @param string $key
      * @return mixed
      *
      * @throws ezcBasePropertyNotFoundException
      *         If no dataset with identifier exists
      */
+	#[\ReturnTypeWillChange]
     public function offsetGet( $key )
     {
         $key = $this->count - $key - 1;
@@ -168,14 +170,14 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
     }
 
     /**
-     * Set the element with the given offset. 
+     * Set the element with the given offset.
      *
      * This method is part of the ArrayAccess interface to allow access to the
-     * data of this object as if it was an array. 
+     * data of this object as if it was an array.
      *
-     * Setting of not yet existing offsets in the stack is not allowed and will 
+     * Setting of not yet existing offsets in the stack is not allowed and will
      * return a ezcBaseValueException.
-     * 
+     *
      * @param string $key
      * @param mixed $value
      * @return void
@@ -183,6 +185,7 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
      * @throws ezcBaseValueException
      *         Setting unknown offsets is not allowed
      */
+	#[\ReturnTypeWillChange]
     public function offsetSet( $key, $value )
     {
         $key = $this->count - $key - 1;
@@ -195,18 +198,19 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
     }
 
     /**
-     * Unset the element with the given offset. 
+     * Unset the element with the given offset.
      *
      * This method is part of the ArrayAccess interface to allow access to the
      *
      * Is not permitted for this stack implementation.
-     * 
+     *
      * @param string $key
      * @return void
      *
      * @throws ezcBaseValueException
      *         Setting values is not allowed
      */
+	#[\ReturnTypeWillChange]
     public function offsetUnset( $key )
     {
         throw new ezcBaseValueException( $key, $value, 'none' );
@@ -214,7 +218,7 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
 
     /**
      * Selects the very first dataset and returns it.
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datasets of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -233,6 +237,7 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
      *
      * @return int
      */
+	#[\ReturnTypeWillChange]
     public function count()
     {
         return $this->count;
