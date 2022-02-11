@@ -139,7 +139,7 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
      * @param string $key
      * @return bool
      */
-	#[\ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetExists( $key )
     {
         return isset( $this->data[$key] );
@@ -157,7 +157,7 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
      * @throws ezcBasePropertyNotFoundException
      *         If no dataset with identifier exists
      */
-	#[\ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet( $key )
     {
         $key = $this->count - $key - 1;
@@ -185,7 +185,7 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
      * @throws ezcBaseValueException
      *         Setting unknown offsets is not allowed
      */
-	#[\ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetSet( $key, $value )
     {
         $key = $this->count - $key - 1;
@@ -210,7 +210,7 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
      * @throws ezcBaseValueException
      *         Setting values is not allowed
      */
-	#[\ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetUnset( $key )
     {
         throw new ezcBaseValueException( $key, $value, 'none' );
@@ -237,7 +237,7 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
      *
      * @return int
      */
-	#[\ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return $this->count;
