@@ -87,7 +87,10 @@ class ezcDocumentConverterDocbookToHtmlXsltTests extends ezcTestCase
             $this->markTestSkipped( 'You need XSLT support for this test.' );
         }
 
-		libxml_disable_entity_loader(false);
+        if ( PHP_VERSION_ID < 80000 )
+        {
+            libxml_disable_entity_loader(false);
+        }
 
         try
         {
