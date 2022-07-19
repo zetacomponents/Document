@@ -407,7 +407,10 @@ class ezcDocumentRstDocbookVisitor extends ezcDocumentRstVisitor
         $target = $node->target !== false ? $node->target : $this->getAnonymousReferenceTarget();
 
         $link = $this->document->createElement( 'ulink' );
-        $link->setAttribute( 'url', htmlspecialchars( $target ) );
+        if ( $target !== null )
+        {
+            $link->setAttribute( 'url', htmlspecialchars( $target ) );
+        }
         $root->appendChild( $link );
 
         foreach ( $node->nodes as $child )
