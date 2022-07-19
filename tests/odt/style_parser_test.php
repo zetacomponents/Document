@@ -37,6 +37,8 @@ class ezcDocumentOdtStyleParserTest extends ezcTestCase
 
     protected $xpath;
 
+    protected $parser;
+
     public static function suite()
     {
         return new \PHPUnit\Framework\TestSuite( __CLASS__ );

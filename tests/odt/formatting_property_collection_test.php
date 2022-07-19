@@ -33,6 +33,8 @@
  */
 class ezcDocumentOdtFormattingPropertyCollectionTest extends ezcTestCase
 {
+    protected $propColl;
+
     public static function suite()
     {
         return new \PHPUnit\Framework\TestSuite( __CLASS__ );
