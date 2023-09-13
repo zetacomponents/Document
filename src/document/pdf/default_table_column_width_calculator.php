@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -28,16 +28,16 @@
 /**
  * Table column width calculator
  *
- * Default implementation for a table column width calculator, which is 
- * responsible to estimate / guess / calculate sensible column width for a 
+ * Default implementation for a table column width calculator, which is
+ * responsible to estimate / guess / calculate sensible column width for a
  * docbook table definition.
  *
- * Introspects the contents of a table and guesses based on included media and 
+ * Introspects the contents of a table and guesses based on included media and
  * number of words in a cell what a reasonable column width might be.
  *
- * Since this implementation is mostly based on the count and length of words 
- * in one column, it might return unreasonably small column sizes for single 
- * columns. This might lead to columns, where not even a single characters fits 
+ * Since this implementation is mostly based on the count and length of words
+ * in one column, it might return unreasonably small column sizes for single
+ * columns. This might lead to columns, where not even a single characters fits
  * in, which may cause problems while rendering.
  *
  * @package Document
@@ -48,10 +48,10 @@ class ezcDocumentPdfDefaultTableColumnWidthCalculator extends ezcDocumentPdfTabl
     /**
      * Estimate column widths
      *
-     * Should return an array with the column widths given as float numbers 
+     * Should return an array with the column widths given as float numbers
      * between 0 and 1, which all add together to 1.
-     * 
-     * @param DOMElement $table 
+     *
+     * @param DOMElement $table
      * @return array
      */
     public function estimateWidths( DOMElement $table )
@@ -75,9 +75,9 @@ class ezcDocumentPdfDefaultTableColumnWidthCalculator extends ezcDocumentPdfTabl
             {
                 $words = preg_split( '(\s+)', $cell['text'] );
                 $count = count( $words );
-                array_map( 'strlen', $words );
+                $wordLengths = array_map( 'strlen', $words );
 
-                $textFactors[$nr] += $count + max( $words ) / $count;
+                $textFactors[$nr] += $count + max( $wordLengths ) / $count;
             }
         }
 
