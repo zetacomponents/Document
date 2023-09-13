@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,8 +29,8 @@
  * Wrapper class around DOMElement to store additional information
  * associated with DOMElement nodes.
  *
- * The storage of additional information is realized using a static object 
- * attribute, since dynamic attributes do not seem to work in DOMElement 
+ * The storage of additional information is realized using a static object
+ * attribute, since dynamic attributes do not seem to work in DOMElement
  * derived classes.
  *
  * @package Document
@@ -55,7 +55,7 @@ class ezcDocumentPropertyContainerDomElement extends DOMElement
      *
      * @var int
      */
-    protected static $id = 1;
+    protected static $_id = 1;
 
     /**
      * Namespace URI for the custom ID setting, for the association with
@@ -98,7 +98,7 @@ class ezcDocumentPropertyContainerDomElement extends DOMElement
     {
         if ( !$this->hasAttributeNs( self::NS_URI, 'id' ) )
         {
-            $id = self::$id++;
+            $id = self::$_id++;
             $this->setAttributeNs( self::NS_URI, 'ez:id', $id );
             self::$properties[$id] = array();
         }
