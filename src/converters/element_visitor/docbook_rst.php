@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -82,10 +82,10 @@ class ezcDocumentDocbookToRstConverter extends ezcDocumentElementVisitorConverte
     public static $wordWrap = 78;
 
     /**
-     * Flag indicating whether to skip the paragraph post processing decoration 
-     * with links and foornotes. Should be disabled during visiting 
+     * Flag indicating whether to skip the paragraph post processing decoration
+     * with links and foornotes. Should be disabled during visiting
      * sub-elements like footnotes.
-     * 
+     *
      * @var bool
      */
     protected $skipPostDecoration = false;
@@ -98,7 +98,7 @@ class ezcDocumentDocbookToRstConverter extends ezcDocumentElementVisitorConverte
      * @param ezcDocumentDocbookToRstConverterOptions $options
      * @return void
      */
-    public function __construct( ezcDocumentDocbookToRstConverterOptions $options = null )
+    public function __construct( ?ezcDocumentDocbookToRstConverterOptions $options = null )
     {
         parent::__construct(
             $options === null ?
@@ -311,10 +311,10 @@ class ezcDocumentDocbookToRstConverter extends ezcDocumentElementVisitorConverte
     /**
      *Set skip post processing
      *
-     * Flag indicating whether to skip the paragraph post processing decoration 
-     * with links and foornotes. Should be disabled during visiting 
+     * Flag indicating whether to skip the paragraph post processing decoration
+     * with links and foornotes. Should be disabled during visiting
      * sub-elements like footnotes.
-     * 
+     *
      * @param bool $flag
      * @return void
      */

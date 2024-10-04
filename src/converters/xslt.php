@@ -48,7 +48,7 @@ abstract class ezcDocumentXsltConverter extends ezcDocumentConverter
      * @param ezcDocumentXsltConverterOptions $options
      * @return void
      */
-    public function __construct( ezcDocumentXsltConverterOptions $options = null )
+    public function __construct( ?ezcDocumentXsltConverterOptions $options = null )
     {
         if ( !ezcBaseFeatures::hasExtensionSupport( 'xsl' ) )
         {

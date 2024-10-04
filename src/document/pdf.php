@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -26,7 +26,7 @@
 
 /**
  * Document handler for PDF documents.
- * 
+ *
  * This document handler can load Docbook documents and generate PDF documents
  * from them. It can be configured using its option class
  * ezcDocumentPdfOptions. The example below shows the configuration of a
@@ -42,7 +42,7 @@
  *
  *  // Add a customized footer
  *  $pdf->registerPdfPart( new ezcDocumentPdfFooterPdfPart(
- *      new ezcDocumentPdfFooterOptions( array( 
+ *      new ezcDocumentPdfFooterOptions( array(
  *          'showDocumentTitle'  => false,
  *          'showDocumentAuthor' => false,
  *          'height'             => '10mm',
@@ -51,7 +51,7 @@
  *
  *  // Add a customized header
  *  $pdf->registerPdfPart( new ezcDocumentPdfHeaderPdfPart(
- *      new ezcDocumentPdfFooterOptions( array( 
+ *      new ezcDocumentPdfFooterOptions( array(
  *          'showPageNumber'     => false,
  *          'height'             => '10mm',
  *      ) )
@@ -98,7 +98,7 @@ class ezcDocumentPdf extends ezcDocument
      * @param ezcDocumentPdfOptions $options
      * @return void
      */
-    public function __construct( ezcDocumentPdfOptions $options = null )
+    public function __construct( ?ezcDocumentPdfOptions $options = null )
     {
         parent::__construct( $options === null ?
             new ezcDocumentPdfOptions() :

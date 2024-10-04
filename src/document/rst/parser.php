@@ -389,7 +389,7 @@ class ezcDocumentRstParser extends ezcDocumentParser
      *
      * @param ezcDocumentParserOptions $options
      */
-    public function __construct( ezcDocumentParserOptions $options = null )
+    public function __construct( ?ezcDocumentParserOptions $options = null )
     {
         parent::__construct( $options );
         $this->documentStack = new ezcDocumentRstStack();

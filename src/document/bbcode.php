@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -27,11 +27,11 @@
 /**
  * Document handler for BBCode text documents.
  *
- * BBCode are common in forum software and only provide a very basic set of 
- * markup directives. The implemented BBCode handler focusses on the BBCode 
+ * BBCode are common in forum software and only provide a very basic set of
+ * markup directives. The implemented BBCode handler focusses on the BBCode
  * implementation in the most common forum software: phpBB.
  *
- * Just like in the forum software it can be extended with custom BBCode 
+ * Just like in the forum software it can be extended with custom BBCode
  * definitions.
  *
  * @package Document
@@ -75,7 +75,7 @@ class ezcDocumentBBCode extends ezcDocument implements ezcDocumentValidation
      * @param ezcDocumentBBCodeOptions $options
      * @return void
      */
-    public function __construct( ezcDocumentBBCodeOptions $options = null )
+    public function __construct( ?ezcDocumentBBCodeOptions $options = null )
     {
         parent::__construct( $options === null ?
             new ezcDocumentBBCodeOptions() :

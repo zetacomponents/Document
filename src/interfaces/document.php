@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -48,7 +48,7 @@ abstract class ezcDocument implements ezcDocumentErrorReporting
 
     /**
      * Errors occured during the conversion process
-     * 
+     *
      * @var array
      */
     protected $errors = array();
@@ -58,7 +58,7 @@ abstract class ezcDocument implements ezcDocumentErrorReporting
      *
      * @param ezcDocumentOptions $options
      */
-    public function __construct( ezcDocumentOptions $options = null )
+    public function __construct( ?ezcDocumentOptions $options = null )
     {
         $this->options = ( $options === null ?
             new ezcDocumentOptions() :
@@ -154,7 +154,7 @@ abstract class ezcDocument implements ezcDocumentErrorReporting
      *
      * The base path will be used as a base for relative file
      * inclusions in the document.
-     * 
+     *
      * @param string $path
      */
     public function setPath( $path )

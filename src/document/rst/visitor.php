@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -137,7 +137,7 @@ abstract class ezcDocumentRstVisitor implements ezcDocumentErrorReporting
 
     /**
      * Array of already generated IDs, so none will be used twice.
-     * 
+     *
      * @var array
      */
     protected $usedIDs = array();
@@ -614,7 +614,7 @@ abstract class ezcDocumentRstVisitor implements ezcDocumentErrorReporting
      * @param bool $force
      * @return string
      */
-    public function hasReferenceTarget( $string, ezcDocumentRstNode $node = null, $force = false )
+    public function hasReferenceTarget( $string, ?ezcDocumentRstNode $node = null, $force = false )
     {
         $id = $this->calculateId( $string );
         if ( isset( $this->references[$id] ) &&
@@ -737,8 +737,8 @@ abstract class ezcDocumentRstVisitor implements ezcDocumentErrorReporting
      * Calculate unique ID
      *
      * Calculate a valid identifier, which is unique for this document.
-     * 
-     * @param string $string 
+     *
+     * @param string $string
      * @return string
      */
     protected function calculateUniqueId( $string )

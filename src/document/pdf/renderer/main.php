@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -35,141 +35,141 @@
  * The basics
  * ==========
  *
- * The rendering size of a single block (paragraph, image) cannot be guessed 
- * properly beforehand, because the dimensions depend on the associated styles 
- * and the driver which needs to render the styles. Because of different fonts 
- * the size of a single simple string may notably vary. The renderer do not 
+ * The rendering size of a single block (paragraph, image) cannot be guessed
+ * properly beforehand, because the dimensions depend on the associated styles
+ * and the driver which needs to render the styles. Because of different fonts
+ * the size of a single simple string may notably vary. The renderer do not
  * know about font properties, but only the drivers do.
  *
- * Because of that the renderers (like the paragraph renderer) can only 
- * request the used dimensions for each word, or word part from the current 
+ * Because of that the renderers (like the paragraph renderer) can only
+ * request the used dimensions for each word, or word part from the current
  * driver and try to fit that word into the currently available space.
  *
- * Some general constraints, like the handling of orphans and widows, require 
- * the renderer to backtrack. If a orphans constraint could not be fulfilled 
- * with the first rendering try, the renderer needs to decide to render less 
- * lines on the prior page and therefore needs to revert all local rendering 
+ * Some general constraints, like the handling of orphans and widows, require
+ * the renderer to backtrack. If a orphans constraint could not be fulfilled
+ * with the first rendering try, the renderer needs to decide to render less
+ * lines on the prior page and therefore needs to revert all local rendering
  * steps and retry the rendering with the additional knowledge.
  *
- * For widow constraints this may mean, that a full paragraph is moved to the 
- * next page, which could mean, that the title before that paragraph might 
- * also be relocated to the following page, which would mean to revert 
- * multiple renderers and elements. To make this possible the renderer wraps 
+ * For widow constraints this may mean, that a full paragraph is moved to the
+ * next page, which could mean, that the title before that paragraph might
+ * also be relocated to the following page, which would mean to revert
+ * multiple renderers and elements. To make this possible the renderer wraps
  * the driver in a transactional driver wrapper.
  *
  * The transactional driver wrapper
  * --------------------------------
  *
- * Like the last paragraph explained it might be necessary to revert (large) 
- * amounts of rendering operations. Once the rendering operations (like 
+ * Like the last paragraph explained it might be necessary to revert (large)
+ * amounts of rendering operations. Once the rendering operations (like
  * drawWord) hit the driver they are immediately serialized into the
  * respective output format (PDF), and could not be reverted anymore.
  *
- * So an additional layer has been implemented in the class 
- * ezcDocumentPdfTransactionalDriverWrapper, which implements the same 
- * interface as all the other drivers, as well as some additional methods to 
+ * So an additional layer has been implemented in the class
+ * ezcDocumentPdfTransactionalDriverWrapper, which implements the same
+ * interface as all the other drivers, as well as some additional methods to
  * handle "transactions".
  *
- * A renderer, like the paragraph renderer, may start a transaction, receives 
- * an ID identifying the started transaction, and may then start its rendering 
- * operations. If the rendering reached a dead end, it may revert everything 
- * using the initially given transaction ID. The revert will affect all 
- * operations since the original call to startTransaction(), even if other 
+ * A renderer, like the paragraph renderer, may start a transaction, receives
+ * an ID identifying the started transaction, and may then start its rendering
+ * operations. If the rendering reached a dead end, it may revert everything
+ * using the initially given transaction ID. The revert will affect all
+ * operations since the original call to startTransaction(), even if other
  * sub-renderers also started transactions in the meantime.
  *
- * The logged calls to the driver are passed up to the real driver once save() 
- * is called explicitly for the given transaction ID, or the main renderer 
+ * The logged calls to the driver are passed up to the real driver once save()
+ * is called explicitly for the given transaction ID, or the main renderer
  * attempts to write the PDF into a file.
  *
- * Depending on the type of the call the driver wrapper logs and / or passes 
+ * Depending on the type of the call the driver wrapper logs and / or passes
  * the call directly up to the actual driver.
  *
  * Calls which are logged only:
  *  - Everything performing actual rendering, like drawLine(), drawWord(), ...
  *
  * Calls which are logged and passed:
- *  - Everything setting the current style configuration, which might also be 
+ *  - Everything setting the current style configuration, which might also be
  *    relevant for font width estimation, especially: setStyle()
  *
  * Calls which are not logged, but passed:
- *  - Everything, which only requests properties, but does not change the 
+ *  - Everything, which only requests properties, but does not change the
  *    driver state, like getTextWidth()
  *
  * The stacked renderers
  * ---------------------
  *
- * The main renderer, which is defined in this class, is responsible for 
- * managing the pages, the available horizontal space on the current page and 
+ * The main renderer, which is defined in this class, is responsible for
+ * managing the pages, the available horizontal space on the current page and
  * calling the sub renderers for the distinct parts in the Docbook document.
  *
- * For each part there is a specialized renderer, which is only responsible 
- * for rendering such a part, like a list renderer, a list item renderer or a 
- * paragraph renderer. The main renderer traverses the Docbook document and calls 
- * the appropriate renderer. You may register additional renderers with the 
- * main renderer, for your custom elements, or overwrite the defined default 
+ * For each part there is a specialized renderer, which is only responsible
+ * for rendering such a part, like a list renderer, a list item renderer or a
+ * paragraph renderer. The main renderer traverses the Docbook document and calls
+ * the appropriate renderer. You may register additional renderers with the
+ * main renderer, for your custom elements, or overwrite the defined default
  * renderers.
  *
- * The main renderer also handles special page elements, like headers and 
+ * The main renderer also handles special page elements, like headers and
  * footers for each page.
  *
- * The sub renderers ask the main renderer for new space, if they exceeded the 
- * available space in the current column / on the current page. This is 
- * implemented in the method getNextRenderingPosition(). This method might 
+ * The sub renderers ask the main renderer for new space, if they exceeded the
+ * available space in the current column / on the current page. This is
+ * implemented in the method getNextRenderingPosition(). This method might
  * request a new page from the driver.
  *
- * The sub renderer may as well call other sub renderer, for stacked element 
- * definitions or may request rendering for all those elements by the main 
+ * The sub renderer may as well call other sub renderer, for stacked element
+ * definitions or may request rendering for all those elements by the main
  * renderer calling back to the process() method.
  *
  * The table sub renderer
  * ----------------------
  *
- * The table renderer is a special sub renderer, since the common space 
- * estimation does not apply here. Tables are structured into cells and the 
- * elements contained in one cell may only use the space defined by the cell. 
- * The table renderer therefore mimics (and extends) the main renderer. So 
- * when the contents of one cell are rendered the sub renderers for the cell 
- * contents (paragraphs, lists, ...) receive an instance of the table renderer 
- * as their "new" main renderer. The table renderer overwrites the methods 
- * like process() and getNextRenderingPosition(), so the sub renderers render 
+ * The table renderer is a special sub renderer, since the common space
+ * estimation does not apply here. Tables are structured into cells and the
+ * elements contained in one cell may only use the space defined by the cell.
+ * The table renderer therefore mimics (and extends) the main renderer. So
+ * when the contents of one cell are rendered the sub renderers for the cell
+ * contents (paragraphs, lists, ...) receive an instance of the table renderer
+ * as their "new" main renderer. The table renderer overwrites the methods
+ * like process() and getNextRenderingPosition(), so the sub renderers render
  * their stuff at the correct positions in the cell.
  *
- * The table renderer itself again dispatches to its main renderer, when, for 
- * example, allocating new pages. In case of a stacked table, the main 
- * renderer of a table renderer may again be a table renderer, which then 
+ * The table renderer itself again dispatches to its main renderer, when, for
+ * example, allocating new pages. In case of a stacked table, the main
+ * renderer of a table renderer may again be a table renderer, which then
  * dispatches to the original main renderer.
  *
  * Style inheritance
  * -----------------
  *
- * The definition of styles works just like CSS with HTML. Each element 
- * inherits the styles from its parent element, which are then overwritten by 
+ * The definition of styles works just like CSS with HTML. Each element
+ * inherits the styles from its parent element, which are then overwritten by
  * the defined styles in the (P)CSS file.
  *
- * The inferring of the styles for a given element is implemented in the 
- * ezcDocumentPcssStyleInferencer class. An instance of this class containing 
- * the currently defined styles is available during the whole rendering 
- * process and will provide the styles for any element, which is passed to the 
+ * The inferring of the styles for a given element is implemented in the
+ * ezcDocumentPcssStyleInferencer class. An instance of this class containing
+ * the currently defined styles is available during the whole rendering
+ * process and will provide the styles for any element, which is passed to the
  * object.
  *
  * Hyphenation
  * -----------
  *
- * Hyphenation is a critical task for proper text rendering. A custom 
- * hyphenator may be defined and passed to the renderer. Each text renderer 
- * will the ask the hyphenator to split words, if the whole word does not fit 
- * into one line any more. It would be sensible to implement a hyphenator 
+ * Hyphenation is a critical task for proper text rendering. A custom
+ * hyphenator may be defined and passed to the renderer. Each text renderer
+ * will the ask the hyphenator to split words, if the whole word does not fit
+ * into one line any more. It would be sensible to implement a hyphenator
  * based on some available dictionary files.
  *
  * Tokenizer
  * ---------
  *
- * For some languages it might be necessary to implement a different text 
- * tokenizer, which does not just split words at whitespaces. To accomplish 
- * that you may implement and pass a custom tokenizer, which is the 
+ * For some languages it might be necessary to implement a different text
+ * tokenizer, which does not just split words at whitespaces. To accomplish
+ * that you may implement and pass a custom tokenizer, which is the
  * responsible for splitting texts.
  *
- * Some renderers, like the literal box renderer, may already use custom 
+ * Some renderers, like the literal box renderer, may already use custom
  * tokenizers, to implement special rendering tasks.
  *
  * @package Document
@@ -218,7 +218,7 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
 
     /**
      * Errors occured during the conversion process
-     * 
+     *
      * @var array
      */
     protected $errors = array();
@@ -266,14 +266,14 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
 
     /**
      * Error reporting level
-     * 
+     *
      * @var int
      */
     protected $errorReporting = 15;
 
     /**
      * PDF renderer options
-     * 
+     *
      * @var ezcDocumentPdfOptions
      */
     protected $options;
@@ -281,12 +281,12 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
     /**
      * Construct renderer from driver to use
      *
-     * @param ezcDocumentPdfDriver $driver 
-     * @param ezcDocumentPcssStyleInferencer $styles 
-     * @param ezcDocumentPdfOptions $options 
+     * @param ezcDocumentPdfDriver $driver
+     * @param ezcDocumentPcssStyleInferencer $styles
+     * @param ezcDocumentPdfOptions $options
      * @return void
      */
-    public function __construct( ezcDocumentPdfDriver $driver, ezcDocumentPcssStyleInferencer $styles, ezcDocumentPdfOptions $options = null )
+    public function __construct( ezcDocumentPdfDriver $driver, ezcDocumentPcssStyleInferencer $styles, ?ezcDocumentPdfOptions $options = null )
     {
         $this->driver = new ezcDocumentPdfTransactionalDriverWrapper();
         $this->driver->setDriver( $driver );
@@ -383,7 +383,7 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
      * @param ezcDocumentPdfTokenizer $tokenizer
      * @return string
      */
-    public function render( ezcDocumentDocbook $document, ezcDocumentPdfHyphenator $hyphenator = null, ezcDocumentPdfTokenizer $tokenizer = null )
+    public function render( ezcDocumentDocbook $document, ?ezcDocumentPdfHyphenator $hyphenator = null, ?ezcDocumentPdfTokenizer $tokenizer = null )
     {
         $this->hyphenator = $hyphenator !== null ? $hyphenator : new ezcDocumentPdfDefaultHyphenator();
         $this->tokenizer  = $tokenizer !== null ? $tokenizer : new ezcDocumentPdfDefaultTokenizer();
@@ -409,9 +409,9 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
     /**
      * Register fonts in driver
      *
-     * Register the font classes specified in the styles with the driver, so 
+     * Register the font classes specified in the styles with the driver, so
      * the driver can use the fonts during the rendering.
-     * 
+     *
      * @return void
      */
     protected function registerFonts()
@@ -555,8 +555,8 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
 
     /**
      * Process a single element with the registered renderers.
-     * 
-     * @param DOMElement $element 
+     *
+     * @param DOMElement $element
      * @param int $number
      * @return int
      */
@@ -657,8 +657,8 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
 
     /**
      * Append document metadata
-     * 
-     * @param ezcDocumentLocateableDomElement $element 
+     *
+     * @param ezcDocumentLocateableDomElement $element
      * @return void
      */
     private function appendMetaData( ezcDocumentLocateableDomElement $element )
@@ -915,8 +915,8 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
      *
      * Finds all anchors somewhere in the current element and adds reference
      * targets for them.
-     * 
-     * @param ezcDocumentLocateableDomElement $element 
+     *
+     * @param ezcDocumentLocateableDomElement $element
      * @return void
      */
     private function handleAnchors( ezcDocumentLocateableDomElement $element )

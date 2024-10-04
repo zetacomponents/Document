@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -38,7 +38,7 @@ class ezcDocumentDocbookToOdtConverter extends ezcDocumentElementVisitorConverte
 {
     /**
      * Text node processor.
-     * 
+     *
      * @var ezcDocumentOdtTextProcessor
      */
     protected $textProcessor;
@@ -46,9 +46,9 @@ class ezcDocumentDocbookToOdtConverter extends ezcDocumentElementVisitorConverte
     /**
      * Stores the base dir to be used during a conversion process.
      *
-     * This is either the base dir of the document converted, if set, or the 
+     * This is either the base dir of the document converted, if set, or the
      * current working dir, if a document from string is processed.
-     * 
+     *
      * @var string
      */
     private $docBaseDir;
@@ -56,15 +56,15 @@ class ezcDocumentDocbookToOdtConverter extends ezcDocumentElementVisitorConverte
     /**
      * Image locator object.
      *
-     * Updated on each conversion. 
-     * 
+     * Updated on each conversion.
+     *
      * @var ezcDocumentOdtImageLocator
      */
     private $imageLocator;
 
     /**
-     * Meta data generator. 
-     * 
+     * Meta data generator.
+     *
      * @var ezcDocumentOdtMetaGenerator
      */
     private $metaGenerator;
@@ -77,7 +77,7 @@ class ezcDocumentDocbookToOdtConverter extends ezcDocumentElementVisitorConverte
      * @param ezcDocumentDocbookToOdtConverterOptions $options
      * @return void
      */
-    public function __construct( ezcDocumentDocbookToOdtConverterOptions $options = null )
+    public function __construct( ?ezcDocumentDocbookToOdtConverterOptions $options = null )
     {
         parent::__construct(
             $options === null ?
@@ -140,7 +140,7 @@ class ezcDocumentDocbookToOdtConverter extends ezcDocumentElementVisitorConverte
     /**
      * Converts the given DocBook $source to an ODT document.
      *
-     * This method receives a DocBook $source document and returns the 
+     * This method receives a DocBook $source document and returns the
      * converters ODT document.
      *
      * @param ezcDocumentDocbook $source
@@ -166,7 +166,7 @@ class ezcDocumentDocbookToOdtConverter extends ezcDocumentElementVisitorConverte
 
     /**
      * Returns the image locator for the current conversion.
-     * 
+     *
      * @return ezcDocumentOdtImageLocator
      * @access private
      */
@@ -176,10 +176,10 @@ class ezcDocumentDocbookToOdtConverter extends ezcDocumentElementVisitorConverte
     }
 
     /**
-     * Reloads the DOMDocument of the given DocBook to make its elements 
+     * Reloads the DOMDocument of the given DocBook to make its elements
      * locateable.
-     * 
-     * @param DOMDocument $docBook 
+     *
+     * @param DOMDocument $docBook
      * @return DOMDocument
      */
     private function makeLocateable( DOMDocument $docBook )
@@ -232,10 +232,10 @@ class ezcDocumentDocbookToOdtConverter extends ezcDocumentElementVisitorConverte
     /**
      * Generates standard ODT meta data into the given $odt.
      *
-     * Extracts the <office:meta/> element from the given $odt or creates a new 
+     * Extracts the <office:meta/> element from the given $odt or creates a new
      * one, if it does not exsist, and generates standard meta data into it.
-     * 
-     * @param DOMDocument $odt 
+     *
+     * @param DOMDocument $odt
      */
     private function generateMetaData( DOMDocument $odt )
     {
@@ -243,7 +243,7 @@ class ezcDocumentDocbookToOdtConverter extends ezcDocumentElementVisitorConverte
             ezcDocumentOdt::NS_ODT_OFFICE,
             'meta'
         );
-        
+
         if ( $metaSections->length === 0 )
         {
             $metaSection = $odt->documentElement->appendChild(

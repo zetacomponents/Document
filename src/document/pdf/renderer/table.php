@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -31,8 +31,8 @@
  * Tries to render a table into the available space, and aborts if
  * not possible.
  *
- * A more detailed explanation of the main renderer stacking used for tbale 
- * rendering and the page level transaction ahndling can be found in the class 
+ * A more detailed explanation of the main renderer stacking used for tbale
+ * rendering and the page level transaction ahndling can be found in the class
  * level docblock of the ezcDocumentPdfMainRenderer class.
  *
  * @package Document
@@ -43,44 +43,44 @@ class ezcDocumentPdfTableRenderer extends ezcDocumentPdfMainRenderer
 {
     /**
      * Reference to the main renderer.
-     * 
+     *
      * @var ezcDocumentPdfMainRenderer
      */
     protected $mainRenderer;
 
     /**
      * Width of current cell.
-     * 
+     *
      * @var flaot
      */
     protected $cellWidth;
 
     /**
-     * Areas covored while rendering a single cell, so that the cell contents 
+     * Areas covored while rendering a single cell, so that the cell contents
      * do not get in the way of other cells contents.
-     * 
+     *
      * @var array
      */
     protected $covered = array();
 
     /**
      * Box of the whole table.
-     * 
+     *
      * @var array
      */
     protected $tableBox = array();
 
     /**
-     * Boxes for all currently drawn cells so their border can be renderer once 
+     * Boxes for all currently drawn cells so their border can be renderer once
      * the row baseline is known.
-     * 
+     *
      * @var array
      */
     protected $cellBoxes = array();
 
     /**
      * The last page the current cell rendered contents on.
-     * 
+     *
      * @var ezcDocumentPdfPage
      */
     protected $lastPageForCell;
@@ -88,9 +88,9 @@ class ezcDocumentPdfTableRenderer extends ezcDocumentPdfMainRenderer
     /**
      * Additional borders to render.
      *
-     * A list of borders to render, detected on page wrapps. Delayed to not be 
+     * A list of borders to render, detected on page wrapps. Delayed to not be
      * reverted by reverted transactions in sub renderers.
-     * 
+     *
      * @var array
      */
     protected $additionalBorders = array();
@@ -98,11 +98,11 @@ class ezcDocumentPdfTableRenderer extends ezcDocumentPdfMainRenderer
     /**
      * Construct renderer from driver to use.
      *
-     * @param ezcDocumentPdfDriver $driver 
-     * @param ezcDocumentPcssStyleInferencer $styles 
-     * @param ezcDocumentPdfOptions $options 
+     * @param ezcDocumentPdfDriver $driver
+     * @param ezcDocumentPcssStyleInferencer $styles
+     * @param ezcDocumentPdfOptions $options
      */
-    public function __construct( ezcDocumentPdfDriver $driver, ezcDocumentPcssStyleInferencer $styles, ezcDocumentPdfOptions $options = null )
+    public function __construct( ezcDocumentPdfDriver $driver, ezcDocumentPcssStyleInferencer $styles, ?ezcDocumentPdfOptions $options = null )
     {
         $this->driver         = $driver;
         $this->styles         = $styles;
@@ -116,11 +116,11 @@ class ezcDocumentPdfTableRenderer extends ezcDocumentPdfMainRenderer
      * Renders a block level element by applzing margin and padding and
      * recursing to all nested elements.
      *
-     * @param ezcDocumentPdfPage $page 
-     * @param ezcDocumentPdfHyphenator $hyphenator 
-     * @param ezcDocumentPdfTokenizer $tokenizer 
-     * @param ezcDocumentLocateableDomElement $block 
-     * @param ezcDocumentPdfMainRenderer $mainRenderer 
+     * @param ezcDocumentPdfPage $page
+     * @param ezcDocumentPdfHyphenator $hyphenator
+     * @param ezcDocumentPdfTokenizer $tokenizer
+     * @param ezcDocumentLocateableDomElement $block
+     * @param ezcDocumentPdfMainRenderer $mainRenderer
      * @return bool
      */
     public function renderNode( ezcDocumentPdfPage $page, ezcDocumentPdfHyphenator $hyphenator, ezcDocumentPdfTokenizer $tokenizer, ezcDocumentLocateableDomElement $block, ezcDocumentPdfMainRenderer $mainRenderer )
@@ -228,15 +228,15 @@ class ezcDocumentPdfTableRenderer extends ezcDocumentPdfMainRenderer
 
     /**
      * Render a single table cell.
-     * 
-     * @param ezcDocumentPdfPage $page 
-     * @param ezcDocumentPdfHyphenator $hyphenator 
-     * @param ezcDocumentPdfTokenizer $tokenizer 
-     * @param ezcDocumentLocateableDomElement $cell 
-     * @param array $styles 
-     * @param ezcDocumentPdfBoundingBox $space 
-     * @param float $start 
-     * @param float $width 
+     *
+     * @param ezcDocumentPdfPage $page
+     * @param ezcDocumentPdfHyphenator $hyphenator
+     * @param ezcDocumentPdfTokenizer $tokenizer
+     * @param ezcDocumentLocateableDomElement $cell
+     * @param array $styles
+     * @param ezcDocumentPdfBoundingBox $space
+     * @param float $start
+     * @param float $width
      */
     protected function renderCell( ezcDocumentPdfPage $page, ezcDocumentPdfHyphenator $hyphenator, ezcDocumentPdfTokenizer $tokenizer, ezcDocumentLocateableDomElement $cell, array $styles, ezcDocumentPdfBoundingBox $space, $start, $width )
     {
@@ -301,9 +301,9 @@ class ezcDocumentPdfTableRenderer extends ezcDocumentPdfMainRenderer
      * Render top border.
      *
      * Render the top border of the given space
-     * 
-     * @param array $styles 
-     * @param ezcDocumentPdfBoundingBox $space 
+     *
+     * @param array $styles
+     * @param ezcDocumentPdfBoundingBox $space
      */
     protected function renderTopBorder( array $styles, ezcDocumentPdfBoundingBox $space )
     {
@@ -340,9 +340,9 @@ class ezcDocumentPdfTableRenderer extends ezcDocumentPdfMainRenderer
      *
      * Mark rendered space as convered on the page.
      *
-     * @param ezcDocumentPdfPage $page 
-     * @param ezcDocumentPdfBoundingBox $space 
-     * @param array $styles 
+     * @param ezcDocumentPdfPage $page
+     * @param ezcDocumentPdfBoundingBox $space
+     * @param array $styles
      */
     protected function setCellCovered( ezcDocumentPdfPage $page, ezcDocumentPdfBoundingBox $space, array $styles )
     {
@@ -373,12 +373,12 @@ class ezcDocumentPdfTableRenderer extends ezcDocumentPdfMainRenderer
 
     /**
      * Process to render the table into its boundings.
-     * 
-     * @param ezcDocumentPdfPage $page 
-     * @param ezcDocumentPdfHyphenator $hyphenator 
-     * @param ezcDocumentPdfTokenizer $tokenizer 
-     * @param ezcDocumentLocateableDomElement $block 
-     * @param ezcDocumentPdfMainRenderer $mainRenderer 
+     *
+     * @param ezcDocumentPdfPage $page
+     * @param ezcDocumentPdfHyphenator $hyphenator
+     * @param ezcDocumentPdfTokenizer $tokenizer
+     * @param ezcDocumentLocateableDomElement $block
+     * @param ezcDocumentPdfMainRenderer $mainRenderer
      */
     protected function processTable( ezcDocumentPdfPage $page, ezcDocumentPdfHyphenator $hyphenator, ezcDocumentPdfTokenizer $tokenizer, ezcDocumentLocateableDomElement $block, ezcDocumentPdfMainRenderer $mainRenderer )
     {
@@ -409,7 +409,7 @@ class ezcDocumentPdfTableRenderer extends ezcDocumentPdfMainRenderer
                 $xOffset                  += $tableColumnWidths[$nr];
                 $lastPage[$pageId]         = $this->lastPageForCell;
 
-                // Go back to page, where each cell in the row shoudl start the 
+                // Go back to page, where each cell in the row shoudl start the
                 // rendering
                 $this->driver->selectPage( $pageStartId );
             }
@@ -439,7 +439,7 @@ class ezcDocumentPdfTableRenderer extends ezcDocumentPdfMainRenderer
                 $this->setCellCovered( $page, $cell['box'], $styles );
             }
 
-            // Set page->y again, since setBoxCovered() increased it, which we 
+            // Set page->y again, since setBoxCovered() increased it, which we
             // do not want in this case.
             $page->y = max( $positions[$lastPageId] );
 
