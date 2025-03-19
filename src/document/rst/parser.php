@@ -4650,14 +4650,6 @@ class ezcDocumentRstParser extends ezcDocumentParser
             return;
         }
 
-        // Check a special case for anonymous hyperlinks, that the beforelast
-        // token is not a '__'.
-        if ( isset( $this->documentStack[1] ) &&
-             ( $this->documentStack[1]->token->content === '__' ) )
-        {
-            return new ezcDocumentRstTextLineNode( $node->token );
-        }
-
         // Aggregate token to check for an embedded inline URL
         $text = false;
         if ( ( $this->documentStack[0]->type === ezcDocumentRstNode::MARKUP_INTERPRETED ) ||
